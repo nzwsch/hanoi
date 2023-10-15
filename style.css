@@ -1,0 +1,108 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+#hanoi {
+  border: solid 1px #333;
+  width: 800px;
+  height: 400px;
+  display: flex;
+  position: relative;
+}
+
+#hanoi::after {
+  content: "";
+  position: absolute;
+  background-color: #000;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+}
+
+#hanoi > div {
+  width: calc(100% / 3);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  position: relative;
+}
+
+#hanoi > div::after {
+  content: "";
+  position: absolute;
+  background-color: #000;
+  bottom: 100px;
+  left: 50%;
+  height: 185px;
+  width: 20px;
+  transform: translateX(-10px);
+}
+
+#hanoi .disk {
+  height: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  z-index: 1;
+  margin-top: 1px;
+}
+
+#hanoi .disk-1 {
+  width: 50px;
+  background-color: rgb(255, 0, 0);
+  border-color: rgb(170, 0, 0);
+}
+#hanoi .disk-2 {
+  width: 80px;
+  background-color: rgb(255, 100, 0);
+  border-color: rgb(170, 68, 0);
+}
+#hanoi .disk-3 {
+  width: 110px;
+  background-color: rgb(255, 200, 0);
+  border-color: rgb(170, 133, 0);
+}
+#hanoi .disk-4 {
+  width: 140px;
+  background-color: rgb(0, 255, 0);
+  border-color: rgb(0, 170, 0);
+}
+#hanoi .disk-5 {
+  width: 170px;
+  background-color: rgb(0, 255, 200);
+  border-color: rgb(0, 170, 133);
+}
+#hanoi .disk-6 {
+  width: 200px;
+  background-color: rgb(0, 200, 255);
+  border-color: rgb(0, 133, 170);
+}
+#hanoi .disk-7 {
+  width: 230px;
+  background-color: rgb(0, 100, 255);
+  border-color: rgb(0, 68, 170);
+}
+#hanoi .disk-8 {
+  width: 260px;
+  background-color: rgb(100, 0, 255);
+  border-color: rgb(68, 0, 170);
+}
