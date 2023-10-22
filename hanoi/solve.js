@@ -12,12 +12,13 @@
     towerOfHanoi(operations, n - 1, auxiliary, source, target);
   }
 
-  function solve(operations, n) {
+  function solve(operations, progress, n) {
     if (operations[n] != null) {
+      progress.setAttribute("value", n);
       document.getElementById(operations[n]).click();
       console.log("click", operations[n]);
       setTimeout(() => {
-        solve(operations, n + 1);
+        solve(operations, progress, n + 1);
       }, 250);
     } else {
       console.log("finished!");
@@ -28,6 +29,8 @@
     document.getElementById("solve").addEventListener("click", (event) => {
       event.target.setAttribute("disabled", true);
 
+      const progress = document.getElementById("progress");
+      progress.removeAttribute("value");
       // Example usage:
       const operations = [];
       const n = 8; // Number of disks
@@ -38,8 +41,8 @@
       towerOfHanoi(operations, n, sourcePeg, auxiliaryPeg, targetPeg);
 
       // Start the countdown from 10 seconds
-      console.log(operations.length);
-      solve(operations, 0);
+      progress.setAttribute("max", operations.length);
+      solve(operations, progress, 0);
     });
   });
 })();
