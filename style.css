@@ -126,3 +126,7 @@ body {
   font-size: 20px;
   line-height: 24px;
 }
+#hanoi .buttons .selected {
+  box-shadow: #ffbf00bf 0px 0px 10px 5px;
+  border: solid #ffbf00 2px;
+}
