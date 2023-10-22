@@ -109,7 +109,7 @@ test("test A->B->A pegs", async ({ page }) => {
   await expect(pegC).not.toHaveClass(/selected/);
 });
 
-test.skip("test A->B->A buttons", async ({ page }) => {
+test("test A->B->A buttons", async ({ page }) => {
   let buttonA = await page.locator("#button-a");
   let buttonB = await page.locator("#button-b");
   let buttonC = await page.locator("#button-c");
@@ -169,7 +169,7 @@ test("test A->B->B pegs", async ({ page }) => {
   await expect(pegC).not.toHaveClass(/selected/);
 });
 
-test.skip("test A->B->B buttons", async ({ page }) => {
+test("test A->B->B buttons", async ({ page }) => {
   let buttonA = await page.locator("#button-a");
   let buttonB = await page.locator("#button-b");
   let buttonC = await page.locator("#button-c");

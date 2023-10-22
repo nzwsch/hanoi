@@ -23,7 +23,7 @@
       }
       const diskA = clickedPeg.querySelector(".disk:first-child");
       const diskB = peg.querySelector(".disk:first-child");
-      if (parseInt(diskA.dataset.index) < parseInt(diskB.dataset.index)) {
+      if (parseInt(diskA.dataset.index) > parseInt(diskB.dataset.index)) {
         button.setAttribute("disabled", true);
       } else {
         button.removeAttribute("disabled");
@@ -57,7 +57,7 @@
       if (isCanceled) {
         clicked.classList.remove("selected");
         peg.classList.remove("selected");
-        disableButtonsIfPegIsEmpty(buttons, peg);
+        disableButtonsIfPegIsEmpty(buttons);
       } else if (isNotSelected) {
         clicked.classList.add("selected");
         peg.classList.add("selected");
