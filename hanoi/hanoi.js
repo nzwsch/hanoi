@@ -1,7 +1,11 @@
 (() => {
   class Hanoi {
+    totalMoves = 0;
+    onFirstMove = () => {};
+
     constructor() {
       this.hanoi = document.getElementById("hanoi");
+      this.counter = document.getElementById("counter");
       this.buttons = this.hanoi.querySelectorAll(".buttons > button");
     }
 
@@ -44,6 +48,10 @@
         peg.classList.add("selected");
         this.disableButtonsIfPegCantMove(peg);
       } else {
+        if (this.totalMoves === 0) {
+          this.onFirstMove();
+        }
+        this.updateCounter();
         this.moveDiskFromSelectedToClicked(peg);
         this.buttons.forEach((button) => button.classList.remove("selected"));
         this.disableButtonsIfPegIsEmpty();
@@ -86,6 +94,11 @@
       });
     }
 
+    updateCounter() {
+      this.totalMoves += 1;
+      this.counter.innerText = `${this.totalMoves} steps`;
+    }
+
     moveDiskFromSelectedToClicked(clickedPeg) {
       const selected = document.querySelector(".buttons .selected");
       const selectedPeg = document.getElementById(selected.dataset.target);
@@ -97,6 +110,9 @@
   }
   document.addEventListener("DOMContentLoaded", () => {
     const hanoi = new Hanoi();
+    hanoi.onFirstMove = () => {
+      document.getElementById("solve").setAttribute("disabled", true);
+    };
     hanoi.setup();
   });
 })();
