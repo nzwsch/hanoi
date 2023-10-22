@@ -137,3 +137,8 @@ body {
   box-shadow: #ffbf00bf 0px 0px 10px 5px;
   border: solid #ffbf00 2px;
 }
+
+.button-right {
+  text-align: right;
+  padding-top: 20px;
+}
