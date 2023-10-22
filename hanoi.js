@@ -11,6 +11,18 @@
     });
   };
 
+  const moveDiskFromSelectedToClicked = (buttons, clickedPeg) => {
+    const selected = document.querySelector(".buttons .selected");
+    const selectedPeg = document.getElementById(selected.dataset.target);
+    const disk = selectedPeg.querySelector(".disk:first-child");
+
+    selectedPeg.classList.remove("selected");
+    clickedPeg.appendChild(disk);
+
+    buttons.forEach((button) => (button.className = ""));
+    disableButtonsIfPegIsEmpty(buttons);
+  };
+
   const clickButton = (pegId) => {
     const hanoi = document.getElementById("hanoi");
     const buttons = hanoi.querySelectorAll("button");
@@ -42,16 +54,7 @@
           }
         });
       } else {
-        buttons.forEach((button) => {
-          if (clicked === button) {
-            button.className = "";
-            // check each peg and when empty peg then it should be disabled
-          } else {
-            button.className = "";
-            // move disk peg to peg
-            // check each peg and when empty peg then it should be disabled
-          }
-        });
+        moveDiskFromSelectedToClicked(buttons, peg);
       }
     };
   };
