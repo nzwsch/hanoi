@@ -14,13 +14,14 @@
 
   function solve(operations, progress, n) {
     if (operations[n] != null) {
-      progress.setAttribute("value", n);
       document.getElementById(operations[n]).click();
+      progress.setAttribute("value", n);
       console.log("click", operations[n]);
       setTimeout(() => {
         solve(operations, progress, n + 1);
       }, 250);
     } else {
+      progress.classList.add("hidden");
       console.log("finished!");
     }
   }
@@ -30,7 +31,7 @@
       event.target.setAttribute("disabled", true);
 
       const progress = document.getElementById("progress");
-      progress.removeAttribute("value");
+      progress.classList.remove("hidden");
       // Example usage:
       const operations = [];
       const n = 8; // Number of disks

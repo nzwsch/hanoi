@@ -142,3 +142,7 @@ body {
   text-align: right;
   padding-top: 20px;
 }
+
+.hidden {
+  display: none;
+}
