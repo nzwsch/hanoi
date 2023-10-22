@@ -24,6 +24,8 @@
       const diskA = clickedPeg.querySelector(".disk:first-child");
       const diskB = peg.querySelector(".disk:first-child");
       if (parseInt(diskA.dataset.index) < parseInt(diskB.dataset.index)) {
+        button.setAttribute("disabled", true);
+      } else {
         button.removeAttribute("disabled");
       }
     });
