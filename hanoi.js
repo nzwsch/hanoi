@@ -11,14 +11,31 @@
     });
   };
 
+  const disableButtonsIfPegCantMove = (buttons, clickedPeg) => {
+    buttons.forEach((button) => {
+      if (button.classList.contains("selected")) {
+        return;
+      }
+      const peg = document.getElementById(button.dataset.target);
+      if (peg.children.length === 0) {
+        button.removeAttribute("disabled");
+        return;
+      }
+      const diskA = clickedPeg.querySelector(".disk:first-child");
+      const diskB = peg.querySelector(".disk:first-child");
+      if (parseInt(diskA.dataset.index) < parseInt(diskB.dataset.index)) {
+        button.removeAttribute("disabled");
+      }
+    });
+  };
+
   const moveDiskFromSelectedToClicked = (buttons, clickedPeg) => {
     const selected = document.querySelector(".buttons .selected");
     const selectedPeg = document.getElementById(selected.dataset.target);
     const disk = selectedPeg.querySelector(".disk:first-child");
 
     selectedPeg.classList.remove("selected");
-    clickedPeg.appendChild(disk);
-
+    clickedPeg.prepend(disk);
     buttons.forEach((button) => (button.className = ""));
     disableButtonsIfPegIsEmpty(buttons);
   };
@@ -31,35 +48,31 @@
     return (event) => {
       const clicked = event.target;
       const isCanceled = clicked.classList.contains("selected");
-
-      // do nothing..
-      if (isCanceled) {
-        clicked.className = "";
-        peg.classList.remove("selected");
-        disableButtonsIfPegIsEmpty(buttons);
-        return;
-      }
-
       const isNotSelected = Array.from(buttons).every(
         (btn) => btn.className === ""
       );
 
-      if (isNotSelected) {
-        buttons.forEach((button) => {
-          if (clicked === button) {
-            button.className = "selected";
-            peg.classList.add("selected");
-          } else {
-            button.disabled = false;
-          }
-        });
+      if (isCanceled) {
+        clicked.classList.remove("selected");
+        peg.classList.remove("selected");
+        disableButtonsIfPegIsEmpty(buttons, peg);
+      } else if (isNotSelected) {
+        clicked.classList.add("selected");
+        peg.classList.add("selected");
+        disableButtonsIfPegCantMove(buttons, peg);
       } else {
+        // clicked.classList.remove("clicked");
+        // peg.classList.remove("clicked");
         moveDiskFromSelectedToClicked(buttons, peg);
       }
     };
   };
 
   document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".disk").forEach((disk, index) => {
+      disk.setAttribute("data-index", index);
+    });
+
     const buttonA = document.getElementById("button-a");
     const buttonB = document.getElementById("button-b");
     const buttonC = document.getElementById("button-c");
