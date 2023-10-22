@@ -1,45 +1,76 @@
-const clickButton = (pegId) => {
-  const buttons = document.querySelectorAll("#hanoi button");
-  // const peg = document.getElementById(pegId);
+(() => {
+  const disableButtonsIfPegIsEmpty = (buttons) => {
+    buttons.forEach((button) => {
+      const peg = document.getElementById(button.dataset.target);
 
-  return (event) => {
-    const clicked = event.target;
-    const isNotSelected = Array.from(buttons).every(
-      (btn) => btn.className === ""
-    );
-
-    if (isNotSelected) {
-      Array.from(buttons).forEach((button) => {
-        if (clicked === button) {
-          button.className = "selected";
-        } else {
-          button.disabled = false;
-        }
-      });
-    } else {
-      Array.from(buttons).forEach((button) => {
-        if (clicked === button) {
-          button.className = "";
-          // check each peg and when empty peg then it should be disabled
-        } else {
-          button.className = "";
-          // move disk peg to peg
-          // check each peg and when empty peg then it should be disabled
-        }
-      });
-    }
+      if (peg.children.length === 0) {
+        button.setAttribute("disabled", true);
+      } else {
+        button.removeAttribute("disabled");
+      }
+    });
   };
-};
 
-document.getElementById("button-b").setAttribute("disabled", true);
-document.getElementById("button-c").setAttribute("disabled", true);
+  const clickButton = (pegId) => {
+    const hanoi = document.getElementById("hanoi");
+    const buttons = hanoi.querySelectorAll("button");
+    const peg = document.getElementById(pegId);
 
-document
-  .getElementById("button-a")
-  .addEventListener("click", clickButton("peg-a"));
-document
-  .getElementById("button-b")
-  .addEventListener("click", clickButton("peg-b"));
-document
-  .getElementById("button-c")
-  .addEventListener("click", clickButton("peg-c"));
+    return (event) => {
+      const clicked = event.target;
+      const isCanceled = clicked.classList.contains("selected");
+
+      // do nothing..
+      if (isCanceled) {
+        clicked.className = "";
+        peg.classList.remove("selected");
+        disableButtonsIfPegIsEmpty(buttons);
+        return;
+      }
+
+      const isNotSelected = Array.from(buttons).every(
+        (btn) => btn.className === ""
+      );
+
+      if (isNotSelected) {
+        buttons.forEach((button) => {
+          if (clicked === button) {
+            button.className = "selected";
+            peg.classList.add("selected");
+          } else {
+            button.disabled = false;
+          }
+        });
+      } else {
+        buttons.forEach((button) => {
+          if (clicked === button) {
+            button.className = "";
+            // check each peg and when empty peg then it should be disabled
+          } else {
+            button.className = "";
+            // move disk peg to peg
+            // check each peg and when empty peg then it should be disabled
+          }
+        });
+      }
+    };
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttonA = document.getElementById("button-a");
+    const buttonB = document.getElementById("button-b");
+    const buttonC = document.getElementById("button-c");
+
+    buttonA.removeAttribute("disabled");
+    buttonB.setAttribute("disabled", true);
+    buttonC.setAttribute("disabled", true);
+
+    buttonA.setAttribute("data-target", "peg-a");
+    buttonB.setAttribute("data-target", "peg-b");
+    buttonC.setAttribute("data-target", "peg-c");
+
+    buttonA.addEventListener("click", clickButton("peg-a"));
+    buttonB.addEventListener("click", clickButton("peg-b"));
+    buttonC.addEventListener("click", clickButton("peg-c"));
+  });
+})();
