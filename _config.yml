@@ -6,7 +6,5 @@ exclude:
   - CNAME
   - README.md
   - playwright.config.js
-  - Gemfile
-  - Gemfile.lock
   - tests
   - node_modules
