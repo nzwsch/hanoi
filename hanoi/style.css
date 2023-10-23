@@ -9,10 +9,19 @@ body {
   padding: 0;
 }
 
-.wrapper {
+.container {
   max-width: 820px;
-  margin: 0 auto;
   padding: 0 10px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.masthead-title a {
+  color: #c0c0c0;
 }
 
 #hanoi {
@@ -152,7 +161,7 @@ body {
 
 .hanoi-solve {
   text-align: right;
-  padding-top: 20px;
+  padding: 20px 0;
 }
 
 .hanoi-solve button {

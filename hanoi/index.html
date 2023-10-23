@@ -3,41 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hanoi</title>
+    <title>Hanoi</title>
+    <link rel="stylesheet" href="poole.css">
+    <link rel="stylesheet" href="lanyon.css">
     <link rel="stylesheet" href="style.css">
     <script src="hanoi.js"></script>
     <script src="solve.js"></script>
 </head>
 <body>
-    <div class="wrapper">
-        <h1>hanoi</h1>
-        <div id="hanoi">
-            <div class="peg" id="peg-a">
-                <div class="disk disk-1"></div>
-                <div class="disk disk-2"></div>
-                <div class="disk disk-3"></div>
-                <div class="disk disk-4"></div>
-                <div class="disk disk-5"></div>
-                <div class="disk disk-6"></div>
-                <div class="disk disk-7"></div>
-                <div class="disk disk-8"></div>
-            </div>
-            <div class="peg" id="peg-b">
-            </div>
-            <div class="peg" id="peg-c">
-            </div>
-            <div class="buttons">
-                <button class="button" id="button-a">A</button>
-                <button class="button" id="button-b">B</button>
-                <button class="button" id="button-c">C</button>
-            </div>
-            <div class="counter" id="counter">
-                0 steps
+    <div class="wrap">
+        <div class="masthead">
+            <div class="container">
+                <h3 class="masthead-title flex">
+                    Hanoi
+                    <small>
+                        <a href="https://seiichiyonezawa.com">seiichiyonezawa.com</a>
+                    </small>
+                </h3>
             </div>
         </div>
-        <div class="hanoi-solve">
-            <progress class="hidden" id="progress"></progress>
-            <button id="solve">solve</button>
+        <div class="container content">
+            <div id="hanoi">
+                <div class="peg" id="peg-a">
+                    <div class="disk disk-1"></div>
+                    <div class="disk disk-2"></div>
+                    <div class="disk disk-3"></div>
+                    <div class="disk disk-4"></div>
+                    <div class="disk disk-5"></div>
+                    <div class="disk disk-6"></div>
+                    <div class="disk disk-7"></div>
+                    <div class="disk disk-8"></div>
+                </div>
+                <div class="peg" id="peg-b">
+                </div>
+                <div class="peg" id="peg-c">
+                </div>
+                <div class="buttons">
+                    <button class="button" id="button-a">A</button>
+                    <button class="button" id="button-b">B</button>
+                    <button class="button" id="button-c">C</button>
+                </div>
+                <div class="counter" id="counter">
+                    0 steps
+                </div>
+            </div>
+            <div class="hanoi-solve">
+                <progress class="hidden" id="progress"></progress>
+                <button id="solve">solve</button>
+            </div>
         </div>
     </div>
 </body>
