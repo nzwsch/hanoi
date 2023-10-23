@@ -1,3 +1,12 @@
 domain: hanoi.seiichiyonezawa.com
 url: https://hanoi.seiichiyonezawa.com
-source: hanoi
+exclude:
+  - package.json
+  - package-lock.json
+  - CNAME
+  - README.md
+  - playwright.config.js
+  - Gemfile
+  - Gemfile.lock
+  - tests
+  - node_modules

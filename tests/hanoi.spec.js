@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("has title", async ({ page }) => {
-  await expect(page).toHaveTitle("hanoi");
+  await expect(page).toHaveTitle("Hanoi");
 });
 
 test("#peg-a has 8 disks", async ({ page }) => {

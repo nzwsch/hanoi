@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "http-server -c-1 -p 9900 hanoi",
+    "start": "http-server -c-1 -p 9900 .",
     "test": "playwright test"
   },
   "devDependencies": {
