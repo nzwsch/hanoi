@@ -25,15 +25,15 @@
       buttonA.removeAttribute("disabled");
     }
 
-    setupButton(button, dataTarget) {
+    setupButton(button, dataId) {
       button.setAttribute("disabled", true);
-      button.setAttribute("data-target", dataTarget);
+      button.setAttribute("data-id", dataId);
       button.addEventListener("click", (event) => this.clickHandler(event));
     }
 
     clickHandler(event) {
       const button = event.target;
-      const peg = document.getElementById(button.dataset.target);
+      const peg = document.getElementById(button.dataset.id);
       const isCanceled = button.classList.contains("selected");
       const isNotSelected = Array.from(this.buttons).every(
         (button) => !button.classList.contains("selected")
@@ -60,7 +60,7 @@
 
     disableButtonsIfPegIsEmpty() {
       this.buttons.forEach((button) => {
-        const peg = document.getElementById(button.dataset.target);
+        const peg = document.getElementById(button.dataset.id);
 
         if (peg.children.length === 0) {
           button.setAttribute("disabled", true);
@@ -76,14 +76,14 @@
           return;
         }
 
-        const peg = document.getElementById(button.dataset.target);
+        const peg = document.getElementById(button.dataset.id);
 
         if (peg.children.length === 0) {
           button.removeAttribute("disabled");
           return;
         }
 
-        const diskA = this.hanoi.querySelector(".disk:first-child");
+        const diskA = selectedPeg.querySelector(".disk:first-child");
         const diskB = peg.querySelector(".disk:first-child");
 
         if (parseInt(diskA.dataset.index) > parseInt(diskB.dataset.index)) {
@@ -100,8 +100,8 @@
     }
 
     moveDiskFromSelectedToClicked(clickedPeg) {
-      const selected = document.querySelector(".buttons .selected");
-      const selectedPeg = document.getElementById(selected.dataset.target);
+      const selected = this.hanoi.querySelector(".buttons .selected");
+      const selectedPeg = document.getElementById(selected.dataset.id);
       const disk = selectedPeg.querySelector(".disk:first-child");
 
       clickedPeg.prepend(disk);
