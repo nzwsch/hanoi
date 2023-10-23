@@ -83,7 +83,7 @@
           return;
         }
 
-        const diskA = selectedPeg.querySelector(".disk:first-child");
+        const diskA = this.hanoi.querySelector(".disk:first-child");
         const diskB = peg.querySelector(".disk:first-child");
 
         if (parseInt(diskA.dataset.index) > parseInt(diskB.dataset.index)) {
