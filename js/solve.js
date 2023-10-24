@@ -34,7 +34,7 @@
       progress.classList.remove("hidden");
       // Example usage:
       const operations = [];
-      const n = 8; // Number of disks
+      const n = 5; // Number of disks
       const sourcePeg = "button-a";
       const auxiliaryPeg = "button-b";
       const targetPeg = "button-c";

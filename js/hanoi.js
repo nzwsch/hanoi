@@ -3,16 +3,15 @@
     totalMoves = 0;
     onFirstMove = () => {};
 
-    constructor() {
+    constructor(disks = 5) {
+      this.disks = disks;
       this.hanoi = document.getElementById("hanoi");
       this.counter = document.getElementById("counter");
       this.buttons = this.hanoi.querySelectorAll(".buttons > button");
     }
 
     setup() {
-      this.hanoi.querySelectorAll(".disk").forEach((disk, index) => {
-        disk.setAttribute("data-index", index);
-      });
+      this.setupDisks();
 
       const buttonA = document.getElementById("button-a");
       const buttonB = document.getElementById("button-b");
@@ -23,6 +22,17 @@
       this.setupButton(buttonC, "peg-c");
 
       buttonA.removeAttribute("disabled");
+    }
+
+    setupDisks() {
+      const pegA = document.getElementById("peg-a");
+
+      for (let n = 1; n <= this.disks; n++) {
+        const disk = document.createElement("div");
+        disk.className = `disk disk-${n}`;
+        disk.setAttribute("data-index", n);
+        pegA.appendChild(disk);
+      }
     }
 
     setupButton(button, dataId) {

@@ -25,14 +25,6 @@
         <div class="container content">
             <div id="hanoi">
                 <div class="peg" id="peg-a">
-                    <div class="disk disk-1"></div>
-                    <div class="disk disk-2"></div>
-                    <div class="disk disk-3"></div>
-                    <div class="disk disk-4"></div>
-                    <div class="disk disk-5"></div>
-                    <div class="disk disk-6"></div>
-                    <div class="disk disk-7"></div>
-                    <div class="disk disk-8"></div>
                 </div>
                 <div class="peg" id="peg-b">
                 </div>
@@ -47,9 +39,16 @@
                     0 steps
                 </div>
             </div>
-            <div class="hanoi-solve">
-                <progress class="hidden" id="progress"></progress>
-                <button id="solve">solve</button>
+            <div class="hanoi-bottom-menu">
+                <div class="change">
+                    <input type="number" value="5" min="1" max="8" id="change-disks">
+                    <button id="change">change</button>
+                </div>
+                <textarea id="hanoi-output" rows="3"></textarea>
+                <div class="solve">
+                    <button id="solve">solve</button>
+                    <progress class="hidden" id="progress" value="0"></progress>
+                </div>
             </div>
         </div>
     </div>
