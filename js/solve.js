@@ -27,14 +27,23 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("change-disks").addEventListener("change", () => {
+      document.getElementById("solve").setAttribute("disabled", true);
+    });
+
+    document.getElementById("change").addEventListener("click", () => {
+      document.getElementById("solve").removeAttribute("disabled");
+    });
+
     document.getElementById("solve").addEventListener("click", (event) => {
       event.target.setAttribute("disabled", true);
 
+      const changeDisks = document.getElementById("change-disks");
       const progress = document.getElementById("progress");
       progress.classList.remove("hidden");
       // Example usage:
       const operations = [];
-      const n = 5; // Number of disks
+      const n = parseInt(changeDisks.value); // Number of disks
       const sourcePeg = "button-a";
       const auxiliaryPeg = "button-b";
       const targetPeg = "button-c";

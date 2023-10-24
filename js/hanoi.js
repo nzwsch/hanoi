@@ -8,15 +8,15 @@
       this.hanoi = document.getElementById("hanoi");
       this.counter = document.getElementById("counter");
       this.buttons = this.hanoi.querySelectorAll(".buttons > button");
+      this.listeners = [];
     }
 
     setup() {
-      this.setupDisks();
-
       const buttonA = document.getElementById("button-a");
       const buttonB = document.getElementById("button-b");
       const buttonC = document.getElementById("button-c");
 
+      this.setupDisks();
       this.setupButton(buttonA, "peg-a");
       this.setupButton(buttonB, "peg-b");
       this.setupButton(buttonC, "peg-c");
@@ -35,10 +35,23 @@
       }
     }
 
+    resetWithDisks(disks) {
+      this.totalMoves = 0;
+      this.disks = disks;
+      this.hanoi.querySelectorAll(".disk").forEach((disk) => disk.remove());
+      this.listeners.forEach(({ button, listener }) =>
+        button.removeEventListener("click", listener)
+      );
+      this.setup();
+    }
+
     setupButton(button, dataId) {
+      const listener = (event) => this.clickHandler(event);
+
       button.setAttribute("disabled", true);
       button.setAttribute("data-id", dataId);
-      button.addEventListener("click", (event) => this.clickHandler(event));
+      button.addEventListener("click", listener);
+      this.listeners.push({ button, listener });
     }
 
     clickHandler(event) {
@@ -118,11 +131,20 @@
       selectedPeg.classList.remove("selected");
     }
   }
+
   document.addEventListener("DOMContentLoaded", () => {
+    const change = document.getElementById("change");
     const hanoi = new Hanoi();
+
     hanoi.onFirstMove = () => {
+      change.setAttribute("disabled", true);
       document.getElementById("solve").setAttribute("disabled", true);
     };
     hanoi.setup();
+
+    change.addEventListener("click", () => {
+      const changeDisks = document.getElementById("change-disks");
+      hanoi.resetWithDisks(changeDisks.value);
+    });
   });
 })();
